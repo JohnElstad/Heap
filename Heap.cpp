@@ -51,10 +51,10 @@ void Heap::print(int i, int indent){
   if(i < count){
     print(leftChild(i),indent+1);
     for(int j = 0;j<=indent;j++){
-      cout<<"     ";
+      cout<<"   ";
     }
     cout<<data[i]<<endl;
-    print(rightChild(i),indent+i);
+    print(rightChild(i),indent+1);
   }
 }
 int Heap::pop(){
@@ -66,4 +66,10 @@ int Heap::pop(){
 }
 int Heap::getCount(){
   return count;
+}
+void Heap::add(int newInt){
+  
+  data[count] = newInt;
+  bubbleUp(count);
+  count++;
 }

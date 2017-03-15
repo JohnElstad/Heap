@@ -4,10 +4,48 @@
 
 using namespace std;
 void toLower(char* a);
+void configureInput(ifstream &stream, bool &isFile);
+void addNumbers(istream &from, Heap* heap);
 
 int main(){
-  cout<<"Welcome to the Heap!"<<endl;
+  cout<<"Welcome to the Heap!\n Quit, ADD, TREE and OUTPUT are valid commands"<<endl;
+  Heap heap;
+  char input[128];
+  bool running = true;
   
+  while(running){
+    cin.getline(input,128);
+    toLower(input);
+    if(input[0] == 'a'){
+      ifstream stream;
+      bool isFile;
+      configureInput(stream, isFile);
+      addNumbers(isFile ? stream : cin, &heap);
+      if(isFile){
+	stream.close();
+      }
+      cin.ignore();
+
+    }
+    else if(input[0] == 'o'){
+      while(heap.getCount()>0){
+	cout << heap.pop() << " ";
+      }
+      cout <<endl;
+    }
+    else if(input[0] == 't'){
+      heap.print(0,0);
+    }
+    else if(input[0] == 'q'){
+      running = false;
+    }
+    else{
+      cout<<"The possible commands are QUIT, ADD, TREE and OUTPUT"<<endl;
+    }    
+
+
+  }
+
 
 }
 
@@ -42,15 +80,20 @@ void configureInput(ifstream &stream, bool &isFile){
     cout<<"Enter it by command line"<<endl;
   }
 }
+//
 void addNumbers(istream &from, Heap* heap){
   int newInput;
   from >> newInput;
   heap->add(newInput);
   while(from.peek() != '\n' && !from.eof()){
     if(isdigit(from.peek())){
-
+      from>>newInput;
+      heap->add(newInput);
+    }
+    else{
+      from.ignore();
     }
   }
-
 }
+
 
