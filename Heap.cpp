@@ -1,7 +1,7 @@
 #include "Heap.h"
 #include <iostream>
 #include <cctype>
-
+//cpp file with most of the heap code
 using namespace std;
 
 int leftChild(int i){
@@ -13,6 +13,7 @@ int rightChild(int i){
 int parent(int i){
   return(i-1)/2;
 }
+//goes down
 void Heap::bubbleDown(int i){
   int swapIndex = -1;
   if(leftChild(i) <= count-1 && rightChild(i) <= count - 1){
@@ -36,7 +37,7 @@ Heap::Heap(){
 Heap::~Heap(){
   delete data;
 }
-
+//goes up tree
 void Heap::bubbleUp(int i){
   if(i != 0){
     if(data[i] > data[parent(i)]){
@@ -47,6 +48,7 @@ void Heap::bubbleUp(int i){
     }
   }
 }
+//prints. Deals with indentation
 void Heap::print(int i, int indent){
   if(i < count){
     print(leftChild(i),indent+1);
@@ -57,6 +59,7 @@ void Heap::print(int i, int indent){
     print(rightChild(i),indent+1);
   }
 }
+//takes top one off
 int Heap::pop(){
   int toReturn = data[0];
   data[0] = data[count-1];
@@ -67,6 +70,7 @@ int Heap::pop(){
 int Heap::getCount(){
   return count;
 }
+//adds
 void Heap::add(int newInt){
   
   data[count] = newInt;

@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Heap.h"
 #include <fstream>
-
+//John Elstad: Heap/ mid-March
 using namespace std;
 void toLower(char* a);
 void configureInput(ifstream &stream, bool &isFile);
 void addNumbers(istream &from, Heap* heap);
-
+// main loop
 int main(){
   cout<<"Welcome to the Heap!\n Quit, ADD, TREE and OUTPUT are valid commands"<<endl;
   Heap heap;
@@ -55,7 +55,7 @@ void toLower(char* a){//simply makes everything lowercase.
     a++;//adds the pointer
   }
 }
-
+//deals with the inputs. File and console
 void configureInput(ifstream &stream, bool &isFile){
   char input[128];
   isFile = false;
@@ -80,7 +80,7 @@ void configureInput(ifstream &stream, bool &isFile){
     cout<<"Enter it by command line"<<endl;
   }
 }
-//
+//adds the numbers/
 void addNumbers(istream &from, Heap* heap){
   int newInput;
   from >> newInput;
